@@ -25,7 +25,7 @@ class FileStorage():
         for key, val in self.__objects.items():
             obj_s[key] = val.to_dict()
         with open(self.__file_path, 'w', encoding='utf-8') as afile:
-            afile.write(json.dumps(obj_s))
+            json.dump(obj_s, afile)
 
     def reload(self):
         """Deserializes the JSON file to __objects only if the file exists"""
@@ -34,7 +34,7 @@ class FileStorage():
         c_dict = {'BaseModel': BaseModel}
         try:
             with open(self.__file_path, 'r', encoding='utf-8') as afile:
-                obj_d = json.loads(afile.read())
+                obj_d = json.load(afile)
                 for key, val in obj_d.items():
                     c_name = c_dict[val['__class__']](**val)
                     self.__objects[key] = c_name
