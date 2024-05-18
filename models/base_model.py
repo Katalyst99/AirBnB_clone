@@ -4,7 +4,6 @@
 import uuid
 from datetime import datetime
 from models import storage
-import models
 
 
 class BaseModel:
@@ -15,13 +14,12 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            models.storage.new(self)
+            storage.new(self)
 
         else:
-            dt = "%Y-%m-%dT%H:%M:%S.%f"
             for key, val in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    val = datetime.strptime(kwargs[key], dt)
+                    val = datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f")
                 elif key == "__class__":
                     continue
                 setattr(self, key, val)
@@ -34,7 +32,7 @@ class BaseModel:
     def save(self):
         """Updates the updated_at attr with the current datetime"""
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         """Returns a dictionary having all keys/values of __dict__"""
