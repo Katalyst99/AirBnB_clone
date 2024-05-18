@@ -4,6 +4,9 @@
 import json
 from models.base_model import BaseModel
 
+c_dict = {'BaseModel': BaseModel}
+
+
 class FileStorage():
     """The class FileStorage that serializes and deserializes"""
     __file_path = "file.json"
@@ -29,8 +32,6 @@ class FileStorage():
 
     def reload(self):
         """Deserializes the JSON file to __objects only if the file exists"""
-        c_dict = {'BaseModel': BaseModel}
-
         try:
             with open(self.__file_path, 'r', encoding='utf-8') as afile:
                 obj_d = json.loads(afile)
