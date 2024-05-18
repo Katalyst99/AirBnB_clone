@@ -2,6 +2,7 @@
 """This is the FileStorage module"""
 
 import json
+import os
 
 
 class FileStorage():
@@ -15,9 +16,8 @@ class FileStorage():
 
     def new(self, obj):
         """Sets in __objects the obj with key <obj class name>.id"""
-        if obj:
-            key = f"{obj.__class__.__name__}.{obj.id}"
-            self.__objects[key] = obj
+        key = f"{obj.__class__.__name__}.{obj.id}"
+        self.__objects[key] = obj
 
     def save(self):
         """Serializes __objects to the JSON file"""
@@ -33,11 +33,12 @@ class FileStorage():
         from models.user import User
         c_dict = {'BaseModel': BaseModel, 'User': User}
 
-        try:
-            with open(self.__file_path, 'r', encoding='utf-8') as afile:
-                obj_d = json.load(afile)
-                for key, val in obj_d.items():
-                    c_name = c_dict[val['__class__']](**val)
-                    self.__objects[key] = c_name
-        except FileNotFoundError:
-            pass
+        if os.path.exists(self.__file_path):
+            try:
+                with open(self.__file_path, 'r', encoding='utf-8') as afile:
+                    obj_d = json.load(afile)
+                    for key, val in obj_d.items():
+                        c_name = c_dict[val['__class__']](**val)
+                        self.__objects[key] = c_name
+            except FileNotFoundError:
+                pass
