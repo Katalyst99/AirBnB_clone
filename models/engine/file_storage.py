@@ -2,7 +2,7 @@
 """This is the FileStorage module"""
 
 import json
-
+from models.base_model import BaseModel
 
 class FileStorage():
     """The class FileStorage that serializes and deserializes"""
@@ -29,7 +29,6 @@ class FileStorage():
 
     def reload(self):
         """Deserializes the JSON file to __objects only if the file exists"""
-        from models.base_model import BaseModel
         c_dict = {'BaseModel': BaseModel}
 
         try:
