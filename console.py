@@ -19,9 +19,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             c_name = eval(line)
-            instance = c_name()
-            instance.save()
-            print(instance.id)
+            inst = c_name()
+            inst.save()
+            print(inst.id)
 
     def do_show(self, line):
         """Prints string rep of instance based on name and id"""
@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
         not on the class name"""
         obj_inst = []
         obj_all = storage.all()
-        if line:
+        if line != "":
             if line not in self.c_cls:
                 print("** class doesn't exist **")
                 return
