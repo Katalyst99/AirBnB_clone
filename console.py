@@ -81,11 +81,11 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
 
-            for key, val in obj_all.items():
-                if key.startswith(line + '.'):
+            for val in obj_all.values():
+                if type(val).__name__ == line:
                     obj_inst.append(str(val))
         else:
-            for key, val in obj_all.items():
+            for val in obj_all.values():
                 obj_inst.append(str(val))
         print(obj_inst)
 
