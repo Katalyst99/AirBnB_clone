@@ -45,14 +45,14 @@ This project includes the following components:
 ## Concepts
 
 - **Python packages**: Understanding how to create and manage Python packages.
-- **AirBnB clone**: Creating a command interpreter similar to a shell but for managing AirBnB objects.
+- **AirBnB clone**: Creating a command interpreter similar to a shell but for AirBnB objects.
 
 ## Features
 
 - Command interpreter to manage AirBnB objects.
 - Serialization and deserialization of instances to and from JSON.
-- Basic CRUD operations for the AirBnB objects.
-- Unit testing for all components.
+- CRUD operations for the AirBnB objects.
+- Unit testing.
 
 ## Requirements
 
@@ -80,6 +80,12 @@ This project includes the following components:
 To start the command interpreter, run:
 ```bash
 ./console.py
+
+To start in non-interactive mode:
+echo "help" | ./console.py
+
+Also regarding tests:
+echo "python3 -m unittest discover tests" | bash
 
 ## Project Structure
 

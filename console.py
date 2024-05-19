@@ -89,6 +89,47 @@ class HBNBCommand(cmd.Cmd):
                 obj_inst.append(str(val))
         print(obj_inst)
 
+    def do_update(self, line):
+        """ Updates an instance based on the class name
+        and id by adding or updating attribute"""
+        strings = line.split()
+        if len(strings) == 0:
+            print('** class name missing **')
+            return
+        if len(strings) == 1:
+            print('** instance id missing **')
+            return
+        if strings[0] not in self.c_cls:
+            print("** class doesn't exist **")
+            return
+        key = f"{strings[0]}.{strings[1]}"
+        if key not in storage.all():
+            print('** no instance found **')
+            return
+        if len(strings) == 2:
+            print('** attribute name missing **')
+            return
+        if len(strings) == 3:
+            print("** value missing **")
+            return
+        inst = storage.all()[key]
+        name_atr = strings[2]
+        val_atr = strings[3].strip('"')
+
+        if hasattr(inst, name_atr):
+            type_atr = type(getattr(inst, name_atr))
+            try:
+                val_atr = type_atr(val_atr)
+            except:
+                pass
+        else:
+            try:
+                val_atr = eval(val_atr)
+            except:
+                pass
+        setattr(inst, name_atr, val_atr)
+        inst.save()
+
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
