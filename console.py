@@ -19,9 +19,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             c_name = eval(line)
-            inst = c_name()
-            inst.save()
-            print(inst.id)
+            instance = c_name()
+            instance.save()
+            print(instance.id)
 
     def do_show(self, line):
         """Prints string rep of instance based on name and id"""
@@ -78,7 +78,6 @@ class HBNBCommand(cmd.Cmd):
             if line not in self.c_cls:
                 print("** class doesn't exist **")
                 return
-
             for val in obj_all.values():
                 if type(val).__name__ == line:
                     obj_inst.append(str(val))
@@ -118,12 +117,12 @@ class HBNBCommand(cmd.Cmd):
             type_atr = type(getattr(inst, name_atr))
             try:
                 val_atr = type_atr(val_atr)
-            except:
+            except ValueError:
                 pass
         else:
             try:
                 val_atr = eval(val_atr)
-            except:
+            except (NameError, SyntaxError):
                 pass
         setattr(inst, name_atr, val_atr)
         inst.save()
