@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
         elif line not in self.c_cls:
             print("** class doesn't exist **")
         else:
-            c_name = eval(line)
+            c_name = self.c_cls[line]
             instance = c_name()
             instance.save()
             print(instance.id)
@@ -52,31 +52,29 @@ class HBNBCommand(cmd.Cmd):
         """Deletes an instance based on the class name and id"""
         if not line:
             print('** class name missing **')
+        strings = line.split()
+        if len(strings) == 1:
+            if strings[0] not in self.c_cls:
+                print("** class doesn't exist **")
+            else:
+                print('** instance id missing **')
+            return
+        if strings[0] not in self.c_cls:
+            print("** class doesn't exist **")
+            return
+        key = "{}.{}".format(strings[0], strings[1])
+        if key in storage.all():
+            del storage.all()[key]
+            storage.save()
         else:
-            strings = line.split()
-            if len(strings) == 1:
-                if strings[0] not in self.c_cls:
-                    print("** class doesn't exist **")
-                else:
-                    print('** instance id missing **')
-                return
-
-                if strings[0] not in self.c_cls:
-                    print("** class doesn't exist **")
-                    return
-                key = "{}.{}".format(strings[0], strings[1])
-                if key in storage.all():
-                    del storage.all()[key]
-                    storage.save()
-                else:
-                    print('** no instance found **')
+            print('** no instance found **')
 
     def do_all(self, line):
         """Prints all string rep of all instances based or
         not on the class name"""
         obj_inst = []
         obj_all = storage.all()
-        if line != "":
+        if line:
             if line not in self.c_cls:
                 print("** class doesn't exist **")
                 return
@@ -120,12 +118,12 @@ class HBNBCommand(cmd.Cmd):
             type_atr = type(getattr(inst, name_atr))
             try:
                 val_atr = type_atr(val_atr)
-            except:
+            except ValueError:
                 pass
         else:
             try:
                 val_atr = eval(val_atr)
-            except:
+            except (NameError, SyntaxError):
                 pass
         setattr(inst, name_atr, val_atr)
         inst.save()
