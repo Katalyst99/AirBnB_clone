@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
         not on the class name"""
         obj_inst = []
         obj_all = storage.all()
-        if line != "":
+        if line:
             if line not in self.c_cls:
                 print("** class doesn't exist **")
                 return
@@ -118,12 +118,12 @@ class HBNBCommand(cmd.Cmd):
             type_atr = type(getattr(inst, name_atr))
             try:
                 val_atr = type_atr(val_atr)
-            except ValueError:
+            except:
                 pass
         else:
             try:
                 val_atr = eval(val_atr)
-            except (NameError, SyntaxError):
+            except:
                 pass
         setattr(inst, name_atr, val_atr)
         inst.save()
