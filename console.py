@@ -8,12 +8,12 @@ from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     """The class for the console defined"""
-    prompt = '(hbnb) '
+    prompt = "(hbnb) "
     c_cls = ['BaseModel']
 
     def do_create(self, line):
         """Creates a new instance of BaseModel, nd prints the id."""
-        if line == '':
+        if line == "":
             print('** class name missing **')
         elif line not in self.c_cls:
             print("** class doesn't exist **")
@@ -70,6 +70,24 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                 else:
                     print('** no instance found **')
+
+    def do_all(self, line):
+        """Prints all string rep of all instances based or
+        not on the class name"""
+        obj_inst = []
+        obj_all = storage.all()
+        if line != "":
+            if line not in self.c_cls:
+                print("** class doesn't exist **")
+                return
+
+            for key, val in obj_all.items():
+                if key.startswith(line + '.'):
+                    obj_inst.append(str(val))
+        else:
+            for val in obj_all.values:
+                obj_inst.append(str(val))
+        print(obj_inst)
 
     def do_quit(self, line):
         """Quit command to exit the program"""
