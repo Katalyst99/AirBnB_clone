@@ -85,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
                 if key.startswith(line + '.'):
                     obj_inst.append(str(val))
         else:
-            for val in obj_all.values:
+            for key, val in obj_all.items():
                 obj_inst.append(str(val))
         print(obj_inst)
 
