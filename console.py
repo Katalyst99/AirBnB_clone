@@ -4,12 +4,19 @@
 import cmd
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
     """The class for the console defined"""
     prompt = "(hbnb) "
-    c_cls = ['BaseModel']
+    c_cls = ['BaseModel', 'User', 'State', 'City'
+             'Amenity', 'Place', 'Review']
 
     def do_create(self, line):
         """Creates a new instance of BaseModel, nd prints the id."""
