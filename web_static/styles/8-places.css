@@ -6,7 +6,7 @@
     margin: 45px auto;
 }
 
-.places .price_by_night {
+.price_by_night {
     line-height: 60px;
     color: #FF5A5F;
     font-size: 30px;
@@ -23,7 +23,7 @@
     right: 0;
 }
 
-.places .information {
+.information {
     padding-top: 5px;
     padding-bottom: 12px;
     margin-top: 10px;
@@ -35,22 +35,22 @@
     border-bottom: 1px solid #DDDDDD;
 }
 
-.places .max_guest, .number_rooms, .number_bathrooms {
+.max_guest, .number_rooms, .number_bathrooms {
     width: 100px;
     text-align: center;
     margin: 0px auto;
 }
 
-.places .user {
+.user {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-.places .description {
+.description {
     text-align: left;
 }
 
-.places .headline {
+.headline {
     height: 80px;
     width: 100%;
     display: flex;
