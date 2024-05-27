@@ -77,6 +77,8 @@
 .places .guest_icon, .bed_icon, .bath_icon {
     display: inline-block;
     background-image: url("../images/icon_group.png");
+    background-image: url("../images/icon_bed.png");
+    ackground-image: url("../images/icon_bath.png");
     background-repeat: no-repeat;
     background-position: center;
     width: 50px;
