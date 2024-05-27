@@ -39,6 +39,7 @@
     width: 100px;
     text-align: center;
     margin: 0px auto;
+    display: inline-block;
 }
 
 .user {
@@ -74,7 +75,7 @@
     border-radius: 4px;
 }
 
-.places .guest_icon {
+.guest_icon {
     display: inline-block;
     background-image: url("../images/icon_group.png");
     background-repeat: no-repeat;
@@ -83,7 +84,7 @@
     height: 50px;
 }
 
-.places .bed_icon {
+.bed_icon {
     display: inline-block;
     background-image: url("../images/icon_bed.png");
     background-repeat: no-repeat;
@@ -92,7 +93,7 @@
     height: 50px;
 }
 
-.places .bath_icon {
+.bath_icon {
     display: inline-block;
     background-image: url("../images/icon_bath.png");
     background-repeat: no-repeat;
