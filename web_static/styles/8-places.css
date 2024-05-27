@@ -59,7 +59,7 @@
     position: relative;
 }
 
-.places article {
+article {
     display: flex;
     width: 390px;
     flex: none;
@@ -102,7 +102,7 @@
     height: 50px;
 }
 
-.places h1 {
+h1 {
     display: block;
     text-align: left;
     width: 95%;
@@ -113,7 +113,7 @@
     font-size: 30px;
 }
 
-.places article h2 {
+article h2 {
     font-size: 30px;
     margin: 10px auto;
     padding: 0px;
