@@ -1,0 +1,18 @@
+.places {
+    display: block;
+    text-align: centre;
+    margin: 45px auto;
+}
+
+.places h1 {
+    display: block;
+}
+.places article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: #FF5A5F solid 1px;
+    border-radius: 4px;
+    text-align: centre;
+    display: inline-block;
+}
