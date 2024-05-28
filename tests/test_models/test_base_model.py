@@ -29,9 +29,11 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save_method(self):
         """Test of class save method"""
+        prev_updated_at = self.my_model.updated_at
         self.my_model.save()
         self.assertTrue(hasattr(self.my_model, "updated_at"))
         self.assertIsInstance(self.my_model.updated_at, datetime.datetime)
+        self.assertNotEqual(prev_updated_at, self.my_model.updated_at)
 
     def test_to_dict_method(self):
         """Test to_dict method"""
