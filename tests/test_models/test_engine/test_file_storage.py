@@ -10,8 +10,17 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """Set up of instances"""
         self.my_storage = FileStorage()
-        self.my_model = BaseModel()
 
+    def test_FileStorage_instance(self):
+        """Test for is instance"""
+        self.assertIsInstance(self.my_storage, FileStorage)
+
+    def test_FileStorage_save(self):
+        """Test for save method"""
+        self.assertTrue(hasattr(self.my_storage, '_FileStorage__file_path'))
+        self.assertTrue(hasattr(self.my_storage, '_FileStorage__objects'))
+        self.assertIsInstance(self.my_storage._FileStorage__file_path, str)
+        self.assertIsInstance(self.my_storage._FileStorage__objects, dict)
 
 
 if __name__ == '__main__':
