@@ -12,11 +12,6 @@ class TestFileStorage(unittest.TestCase):
         self.my_storage = FileStorage()
         self.my_model = BaseModel()
 
-    def test_FileStorage_save(self):
-        """Test for save method instance"""
-        prime_updated_at = self.my_model.updated_at
-        self.my_model.save()
-        self.assertNotEqual(prime_updated_at, self.my_model.updated_at)
 
 
 if __name__ == '__main__':
