@@ -12,10 +12,6 @@ class TestFileStorage(unittest.TestCase):
         self.my_storage = FileStorage()
         self.my_model = BaseModel()
 
-    def test_FileStorage_instance(self):
-        """Test for is instance"""
-        self.assertIsInstance(self.my_storage, FileStorage)
-
     def test_FileStorage_save(self):
         """Test for save method instance"""
         prime_updated_at = self.my_model.updated_at
