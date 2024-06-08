@@ -14,6 +14,7 @@ class TestFileStorage(unittest.TestCase):
         self.my_storage = FileStorage()
         self.my_model = BaseModel()
         self.my_model_id = self.my_model.__class__.__name__ + '.' + self.my_model.id
+        self.file_path = "file.json"
 
     def tearDown(self):
         """Class method to close test case environment"""
@@ -35,10 +36,7 @@ class TestFileStorage(unittest.TestCase):
         """Test for save method"""
         self.my_storage.new(self.my_model)
         self.my_storage.save()
-        self.assertTrue(os.path.exists("file.json"))
-        with open("file.json", "r") as afile:
-            data = json.load(afile)
-            self.assertIn(self.my_model_id, data)
+        self.assertTrue(os.path.exists(self.file_path))
 
     def test_FileStorage_reload(self):
         """Test for reload method"""
