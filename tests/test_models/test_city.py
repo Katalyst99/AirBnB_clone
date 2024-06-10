@@ -9,7 +9,7 @@ class TestCity(unittest.TestCase):
 
     my_city = City()
 
-    def test_is_user(self):
+    def test_is_city(self):
         """Test for inheritance"""
         self.assertIsInstance(self.my_city, City)
 
