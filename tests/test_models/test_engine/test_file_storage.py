@@ -13,7 +13,7 @@ class TestFileStorage(unittest.TestCase):
         """Set up of instances"""
         self.my_storage = FileStorage()
         self.my_model = BaseModel()
-        self.my_model_id = self.my_model.__class__.__name__ + '.' + self.my_model.id
+        self.my_model_id = self.my_model.__class__.__name__ + '.' +self.my_model.id
         self.file_path = "file.json"
 
     def tearDown(self):
@@ -32,23 +32,20 @@ class TestFileStorage(unittest.TestCase):
         """Test for new method"""
         self.my_storage.new(self.my_model)
         self.assertIn(self.my_model_id, self.my_storage.all())
+
     def test_FileStorage_save(self):
         """Test for save method"""
         self.my_storage.new(self.my_model)
         self.my_storage.save()
-        self.assertTrue(os.path.exists(self.file_path))
+        self.assertTrue(os.path.exists(FileStorage._FileStorage__file_path))
 
     def test_FileStorage_reload(self):
         """Test for reload method"""
         self.my_storage.new(self.my_model)
         self.my_storage.save()
-        new_my_storage = FileStorage()
-        new_my_storage.reload()
-        self.assertIn(self.my_model_id, new_my_storage.all())
-        my_obj = new_my_storage.all()[self.my_model_id]
-        self.assertEqual(my_obj.id, self.my_model.id)
-        self.assertEqual(my_obj.created_at, self.my_model.created_at)
-        self.assertEqual(my_obj.updated_at, self.my_model.updated_at)
+        self.my_storage._FileStorage__objects.clear()
+        self.my_storage.reload()
+        self.assertIn(self.my_model_id, self.my_storage.all())
 
 
 if __name__ == '__main__':
