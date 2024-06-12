@@ -20,7 +20,7 @@ class TestFileStorage(unittest.TestCase):
         """Class method to close test case environment"""
         FileStorage._FileStorage__objects = {}
         try:
-            os.remove("file.json")
+            os.remove(FileStorage._FileStorage__file_path)
         except FileNotFoundError:
             pass
 
